@@ -78,7 +78,12 @@ let exec_process (config : runtime_events_config) (argsl : string list) :
   { alive; cursor; close; pid = child_pid }
 
 let attach_process (dir : string) (pid : int) : subprocess =
-  let cursor = Runtime_events.create_cursor (Some (dir, pid)) in
+  let cursor =
+    try Runtime_events.create_cursor (Some (dir, pid))
+    with Failure str ->
+      (* Provide some context for which directory was passed to create_cursor *)
+      failwith (str ^ " Directory: " ^ dir)
+  in
   let alive () =
     try
       Unix.kill pid 0;
