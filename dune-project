@@ -18,7 +18,7 @@
  (depends
   (ocaml (>= "5.0.0~"))
   hdr_histogram
-  (cmdliner (>= 1.1.0))
+  (cmdliner (and (>= 1.1.0) (< 2.0)))
   (trace-fuchsia (>= 0.10))
   (trace (>= 0.10))
   (menhir :with-test)
@@ -32,4 +32,4 @@
  (maintenance_intent "(latest)")
  (depends
   (ocaml (>= "5.0.0~"))
-  (cmdliner (>= 1.1.0))))
+  (cmdliner (and (>= 1.1.0) (< 2.0)))))
